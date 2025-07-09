@@ -1,0 +1,6 @@
+../Inc/main.h:159:26:Delay_ms	8	static
+../Inc/main.h:170:26:Delay_milli	16	static
+../Inc/main.h:51:22:MCU_Clock_Setup	8	static
+../Src/main.c:46:7:digital_to_analog	8	static
+../Src/main.c:51:7:Thermistor_GetTempC	16	static
+../Src/main.c:70:5:main	40	static

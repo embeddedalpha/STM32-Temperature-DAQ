@@ -1,0 +1,6 @@
+../Drivers/ADC/ADC.c:65:17:Timer_CalcPrescalerAndReload	8	static
+../Drivers/ADC/ADC.c:98:13:ADC_Timer_External_Trigger_Init.isra	32	static
+../Drivers/ADC/ADC.c:750:8:ADC_Init	32	static
+../Drivers/ADC/ADC.c:862:8:ADC_Enable	8	static
+../Drivers/ADC/ADC.c:886:8:ADC_Start	0	static
+../Drivers/ADC/ADC.c:919:8:ADC_Start_Capture	16	static

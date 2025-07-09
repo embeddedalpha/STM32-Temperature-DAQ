@@ -1,0 +1,4 @@
+../Drivers/Console/Console.c:57:6:Console_IRQ	0	static,ignoring_inline_asm
+../Drivers/Console/Console.c:94:6:Console_Init	16	static
+../Drivers/Console/Console.c:124:7:printConsole	16	static
+../Drivers/Console/Console.c:171:6:readConsole	24	static
