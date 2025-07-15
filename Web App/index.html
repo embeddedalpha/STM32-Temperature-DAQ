@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en"><head data-llama-id="0">
+<meta charset="utf-8" data-llama-id="1">
+<meta content="width=device-width, initial-scale=1.0" name="viewport" data-llama-id="2">
+<title data-llama-id="3">Temperature Monitor</title>
+<script src="https://cdn.tailwindcss.com" data-llama-id="4"></script>
+<style data-llama-id="5">
+        /* Custom Fonts */
+        @import url('https://rsms.me/inter/inter.css');
+        .font-header {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+        }
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+</style>
+</head>
+<body class="bg-white text-[#111827] font-body" data-llama-id="6">
+<!-- Header Section -->
+<header class="bg-[#1E40AF] text-white py-4 shadow-md" data-llama-id="7">
+<div class="max-w-6xl mx-auto flex items-center justify-between px-4" data-llama-id="8">
+<div class="flex items-center space-x-4" data-llama-id="9">
+<img alt="Logo" class="h-10 w-10" src="https://llamapress-ai-image-uploads.s3.us-west-2.amazonaws.com/logo-delta-abstract-square-dimensions.png" data-llama-id="10">
+<h1 class="text-xl font-header" data-llama-id="11">Temperature Monitor</h1>
+</div>
+<div class="flex items-center space-x-6" data-llama-id="12">
+<!-- System Status Indicator -->
+<div class="flex items-center space-x-2" data-llama-id="13">
+<div class="w-3 h-3 rounded-full bg-[#059669]" id="connectionIndicator" data-llama-id="14"></div>
+<span class="text-sm" data-llama-id="15">System Online</span>
+</div>
+<!-- Dark Mode Toggle -->
+<button class="bg-gray-200 text-gray-800 rounded px-3 py-1 hover:bg-gray-300 transition duration-200" id="darkModeToggle" data-llama-id="16">
+                    Dark Mode
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="max-w-6xl mx-auto p-6 space-y-6" data-llama-id="17">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-llama-id="18">
+<!-- Left Panel -->
+<div class="space-y-6" data-llama-id="19">
+<!-- Connection Controls Card -->
+<div class="bg-[#F3F4F6] border rounded-lg p-6 shadow hover:shadow-lg transition duration-200" data-llama-id="20">
+<div class="flex items-center justify-between mb-6" data-llama-id="21">
+<div class="text-lg font-header" data-llama-id="22">Connection Controls</div>
+<!-- Visual Connection Status Indicator -->
+<div class="flex items-center space-x-2" data-llama-id="23">
+<div class="w-4 h-4 rounded-full bg-[#DC2626]" id="connectionIndicator" data-llama-id="24"></div>
+<span class="text-sm" data-llama-id="25">Disconnected</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-llama-id="26">
+<div class="space-y-4" data-llama-id="27">
+<div class="flex items-center gap-2" data-llama-id="28">
+<label class="w-24" data-llama-id="29">Serial Port:</label>
+<select class="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#1E40AF]" data-llama-id="30">
+<option data-llama-id="31">Select Port</option>
+</select>
+</div>
+<div class="flex items-center gap-2" data-llama-id="32">
+<label class="w-24" data-llama-id="33">Baud Rate:</label>
+<select class="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#1E40AF]" data-llama-id="34">
+<option data-llama-id="35">Select Rate</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col justify-between" data-llama-id="36">
+<button class="bg-[#1E40AF] text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200" id="connectBtn" data-llama-id="37">Connect</button>
+<button class="border border-gray-300 text-[#1E40AF] px-4 py-2 rounded hover:bg-gray-100 transition duration-200 mt-2" id="disconnectBtn" data-llama-id="38">Disconnect</button>
+</div>
+</div>
+<div class="flex gap-4 mt-4" data-llama-id="39">
+<button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100 transition duration-200" data-llama-id="40">Pause</button>
+<button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100 transition duration-200" data-llama-id="41">Resume</button>
+<button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100 transition duration-200" data-llama-id="42">Export CSV</button>
+</div>
+</div>
+<!-- Channels Card -->
+<div class="bg-[#F3F4F6] border rounded-lg p-6 shadow hover:shadow-lg transition duration-200" data-llama-id="43">
+<h2 class="font-header text-lg mb-4" data-llama-id="44">Channels</h2>
+<div class="space-y-4" id="channelsContainer" data-llama-id="45">
+<!-- Channel 0 -->
+<div class="bg-white border rounded p-4 hover:shadow-md transition duration-200 channel-card" title="Adjust channel settings" data-llama-id="46">
+<div class="flex justify-between items-center mb-3" data-llama-id="47">
+<span class="font-medium" data-llama-id="48">Channel 0</span>
+<div class="flex items-center space-x-2" data-llama-id="49">
+<button class="border rounded px-2 hover:bg-gray-100 transition duration-200" title="Increase Channel" data-llama-id="50">+</button>
+<button class="border rounded px-2 hover:bg-gray-100 transition duration-200" title="Decrease Channel" data-llama-id="51">-</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4" data-llama-id="52">
+<div data-llama-id="53">
+<label class="block text-sm" data-llama-id="54">Low Limit</label>
+<input class="border rounded w-full px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#1E40AF]" type="text" data-llama-id="55">
+</div>
+<div data-llama-id="56">
+<label class="block text-sm" data-llama-id="57">High Limit</label>
+<input class="border rounded w-full px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#1E40AF]" type="text" data-llama-id="58">
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table Card -->
+<div class="bg-[#F3F4F6] border rounded-lg shadow overflow-x-auto" data-llama-id="59">
+<table class="min-w-full" data-llama-id="60">
+<thead class="bg-gray-50 sticky top-0" data-llama-id="61">
+<tr data-llama-id="62">
+<th class="border px-4 py-2 text-left" data-llama-id="63">Channel</th>
+<th class="border px-4 py-2 text-left" data-llama-id="64">Timestamp</th>
+<th class="border px-4 py-2 text-left" data-llama-id="65">Temp °F</th>
+<th class="border px-4 py-2 text-left" data-llama-id="66">Temp °C</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200" data-llama-id="67">
+<tr class="hover:bg-gray-100" data-llama-id="68">
+<td class="border px-4 py-2" data-llama-id="69">0</td>
+<td class="border px-4 py-2" data-llama-id="70">12:00:00</td>
+<td class="border px-4 py-2" data-llama-id="71">75</td>
+<td class="border px-4 py-2" data-llama-id="72">23.9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<!-- Right Panel - Graph Area -->
+<div class="bg-white border rounded-lg p-6 shadow min-h-[600px]" data-llama-id="73">
+<h2 class="font-header text-lg mb-4" data-llama-id="74">Data Visualization</h2>
+<div class="w-full h-full flex items-center justify-center text-gray-500" data-llama-id="75">
+                    Graph will be displayed here
+                </div>
+<div class="mt-4 flex items-center space-x-4" data-llama-id="76">
+<button class="border rounded px-3 py-1 hover:bg-gray-100 transition" data-llama-id="77">Zoom In</button>
+<button class="border rounded px-3 py-1 hover:bg-gray-100 transition" data-llama-id="78">Zoom Out</button>
+<button class="border rounded px-3 py-1 hover:bg-gray-100 transition" data-llama-id="79">Export Data</button>
+</div>
+</div>
+</div>
+</main>
+<script data-llama-id="80">
+        // Dark Mode Toggle
+        const toggleBtn = document.getElementById('darkModeToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if(document.documentElement.classList.contains('dark')) {
+                document.body.classList.replace('bg-white', 'bg-gray-900');
+                document.body.classList.replace('text-[#111827]', 'text-gray-200');
+                toggleBtn.textContent = "Light Mode";
+            } else {
+                document.body.classList.replace('bg-gray-900', 'bg-white');
+                document.body.classList.replace('text-gray-200', 'text-[#111827]');
+                toggleBtn.textContent = "Dark Mode";
+            }
+        });
+
+        // Simulated Connection Status Toggle for Demonstration
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const connectionIndicator = document.querySelectorAll('#connectionIndicator')[0];
+
+        connectBtn.addEventListener('click', () => {
+            connectionIndicator.classList.remove('bg-[#DC2626]');
+            connectionIndicator.classList.add('bg-[#059669]');
+            connectionIndicator.nextElementSibling.textContent = "Connected";
+        });
+
+        disconnectBtn.addEventListener('click', () => {
+            connectionIndicator.classList.remove('bg-[#059669]');
+            connectionIndicator.classList.add('bg-[#DC2626]');
+            connectionIndicator.nextElementSibling.textContent = "Disconnected";
+        });
+</script>
+<script data-llama-id="81">
+        let channelCount = 1;
+        const maxChannels = 8;
+        const channelTemplate = document.querySelector('#channelsContainer .channel-card');
+        const channelsContainer = document.getElementById('channelsContainer');
+
+        // Ensure only Channel 0 is visible initially (already the only one present)
+        
+        // Event delegation for adding and removing channels
+        channelsContainer.addEventListener('click', function(e) {
+            if(e.target && e.target.getAttribute('title') === 'Increase Channel') {
+                addChannel();
+            } else if(e.target && e.target.getAttribute('title') === 'Decrease Channel') {
+                const channelElement = e.target.closest('.channel-card');
+                removeChannel(channelElement);
+            }
+        });
+
+        function addChannel() {
+            if(channelCount < maxChannels) {
+                const newChannel = channelTemplate.cloneNode(true);
+                newChannel.classList.remove('hidden');
+                newChannel.querySelector('span.font-medium').textContent = `Channel ${channelCount}`;
+                channelsContainer.appendChild(newChannel);
+
+                // Add new row to table
+                const tableBody = document.querySelector('tbody');
+                const newRow = document.createElement('tr');
+                newRow.classList.add('hover:bg-gray-100');
+                newRow.innerHTML = `
+                    <td class="border px-4 py-2">${channelCount}</td>
+                    <td class="border px-4 py-2">--:--:--</td>
+                    <td class="border px-4 py-2">--</td>
+                    <td class="border px-4 py-2">--</td>
+                `;
+                tableBody.appendChild(newRow);
+                
+                channelCount++;
+            }
+        }
+
+        function removeChannel(channelElement) {
+            if(channelElement.querySelector('span.font-medium').textContent.trim() === "Channel 0") return;
+            
+            const channelNumber = parseInt(channelElement.querySelector('span.font-medium').textContent.split(' ')[1]);
+            
+            // Remove channel card
+            channelElement.remove();
+            
+            // Remove corresponding table row
+            const tableBody = document.querySelector('tbody');
+            const rows = tableBody.getElementsByTagName('tr');
+            for(let row of rows) {
+                if(parseInt(row.cells[0].textContent) === channelNumber) {
+                    row.remove();
+                    break;
+                }
+            }
+            
+            channelCount--;
+        }
+</script>
+
+</body></html>
